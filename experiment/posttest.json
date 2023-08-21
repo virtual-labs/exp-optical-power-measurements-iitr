@@ -1,39 +1,7 @@
-{
-  "version": 2.0,
-  "questions": [
-    {
-      "question": "This is a Sample Question 1?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "a",
-      "difficulty": "beginner"
-    },
-    {
-      "question": "This is a Sample Question 2?",
-      "answers": {
-        "a": "answer1",
-        "b": "answer2",
-        "c": "answer3",
-        "d": "answer4"
-      },
-      "explanations": {
-        "a": "Explanation 1  <a href='www.google.com'>here</a>",
-        "b": "Explanation 2",
-        "c": "Explanation 2",
-        "d": "Explanation 2"
-      },
-      "correctAnswer": "c",
-      "difficulty": "beginner"
-    }
-  ]
-}
+[{"question":"____________ affects both the fiber attenuation and dispersion.","answers":{"a":"Refractive index","b":"Micro-bending","c":"Connectors","d":"Splices"},"correctAnswer":"b"},
+{"question":"Which of the following is not included in the optical fiber link measurement test?","answers":{"a":"Receiver sensitivity","b":"Attenuation measurement","c":"Dispersion measurement","d":"Splice loss measurement"},"correctAnswer":"a"},
+{"question":"In case of field measurements, the equipment must have ___________ power consumption keeping in mind the battery operation.","answers":{"a":"Moderate","b":"Low","c":"High","d":"Maximum"},"correctAnswer":"b"},
+{"question":"Complicated and involved fiber connection arrangements should be _________ in case of field measurements.","answers":{"a":"Provided","b":"Avoided","c":"Maximized","d":"Minimized"},"correctAnswer":"b"},
+{"question":"Which of the following are not considered as environmental conditions required for field measurements?","answers":{"a":"Pressure","b":"Temperature","c":"Humidity","d":"Power"},"correctAnswer":"d"}]
+
+

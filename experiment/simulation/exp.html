@@ -1,0 +1,502 @@
+<head>
+	<title>Reading values</title>
+	<link rel="stylesheet" href="css/expstyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css'></link>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body  style="width:82em;">
+	<div id="se-pre-con"><div class="load">
+		<p>You can read the values of the experiment</p>
+		<img src="images/load.gif"></img>
+		<p>Please wait...</p></div>
+	</div>
+	<div class="exp" id="exp">
+		<div id="exph">
+			<h1 id="expm">Optical Power Measurements</h1>
+		
+			</div>
+		 
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script>
+			var t=0;
+					$(window).load(function() {
+					// Animate loader off screen
+					
+						$("#se-pre-con").animate({
+							top: "-200%"
+						}, 4000);t=1;
+					});
+			var i=2;
+			var count=1;
+			var l1=[];
+			var l2=[];
+			var l3=[];
+			var f=0,flag=0, temp=1,x=0,y;
+			function plot() {
+				let chartStatus = Chart.getChart("canvas"); 
+                            if (chartStatus != undefined) {
+                            
+							  Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+				   width:630,
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Not Allowed.',
+					html:'Since it is already plotted, click the <b style="color:#19318F">RESET</b> button to reset and run the experiment.',
+				   icon:'error'
+					});
+                            }
+			if(f==1){
+			if(i<3) 
+			Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+				   width:630,
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Oops..',
+					html: 'Please read values into table by clicking on <b style="color:#19318F">Add to table</b> button.',
+				   icon:'error'
+					});
+					
+			else{
+				var ctx=document.getElementById("canvas").getContext('2d');
+				var len1=l1.length;
+				
+				for(var k=0;k<len1;k++) {
+					for(var m=k+1;m<len1;m++) {
+						if(parseFloat(l1[k])>parseFloat(l1[m])) {
+							var temp=l1[k];
+							l1[k]=l1[m];
+							l1[m]=temp;
+							temp=l2[k];
+							l2[k]=l2[m];
+							l2[m]=temp;
+						}
+					}
+				}
+				var chart=new Chart(ctx,{
+								type:'line',
+								data: {
+									labels:l1,
+									datasets:[{
+										label:"dB Loss vs Circle number",
+										
+										borderColor:'#000000',
+										data:l2,
+									}]
+								},
+								options: {
+									responsive:true,
+									
+                                         scales: {
+                                              x: {
+                                                title: {
+                                                color: 'red',
+												text: 'Circle number',
+                                                display: true,
+												align:'center',
+												font: {
+                                                    size: 18,
+													family:"'Times New Roman'",				
+                                                 },
+                                                },
+												
+                                             },
+											 y: {
+                                                title: {
+                                                color: 'red',
+												text: 'dB\u2097\u2092\u209B\u209B',
+                                                display: true,
+												align:'center',
+												font: {
+                                                    size: 18,
+													family:"'Times New Roman'",
+                                                 },
+                                                },
+												
+                                             }
+                                    }
+								}
+							});
+							document.getElementById('add').disabled=true;
+			}
+			}else 
+			Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Oops..',
+					html: 'Please turn on the experiment first.<br> Toggle on/off button.',
+				   icon:'error'
+					});
+
+			}
+			function updateLaser() {
+				
+					f=f+temp;
+					temp=f-temp;
+					f=f-temp;
+					display();
+			}
+			function display() {
+					if(f==0) {
+						if(i>2) for(var j=2;j<i;j++) document.getElementById(j).remove();
+						i=2;
+						count=1;
+						document.getElementById("light1").innerHTML="";
+						document.getElementById("light").innerHTML="";
+						document.getElementById("x").value="";
+						document.getElementById("y").value="";
+						var canvas = document.getElementById('circle');
+						var ctx = canvas.getContext('2d');
+						ctx.clearRect(0,0,canvas.width,canvas.height);
+						document.getElementById('stop').value=1;
+						l1=[];l2=[];flag=0,l3=[];
+						document.getElementById("plot").disabled=true;
+					}
+					else if(f==1){
+						document.getElementById("plot").disabled=false;
+						var img=document.createElement("img");
+						var src=document.getElementById("light");
+						img.src="images/light.PNG";
+						src.appendChild(img);
+						img.style.width= '18em';
+						img.style.height= '1em';
+						img.style.marginLeft= '-0.5em';
+						img.style.marginTop= '0.6em';
+						var img=document.createElement("img");
+						var src=document.getElementById("light1");
+						img.src="images/light.PNG";
+						img.style.width='19em';
+						img.style.height='1em';
+						src.appendChild(img);
+						img.style.marginLeft='0.45em';
+						img.style.marginTop='0.5em';
+						updateTextBox(1);
+					}
+			}
+			function insert() {
+			  if(f==1){
+				
+				var l=document.getElementById("x").value;
+				flag=0;
+				for(var d=0;d<l3.length;d++) if(l==l3[d]){flag=1;break;}
+				if(!flag){
+				l3.push(l);
+				var tab=document.getElementById("table");
+				if(l!="" && y!="") {
+					
+						var row=tab.insertRow(i);
+						row.id=i++;
+						row.setAttribute("bgcolor","#ffffff");
+						row.setAttribute("align","center");
+						var cell1=row.insertCell(0);
+						var cell2=row.insertCell(1);
+						var cell3=row.insertCell(2);
+						var cell4=row.insertCell(3);					
+						cell1.innerHTML=count++;
+						cell2.innerHTML=l;
+						var t1=10*Math.log10(45);
+						cell3.innerHTML=y;
+						var pl=(t1-y).toFixed(3);
+						cell4.innerHTML=pl;
+						l1.push(l);
+						l2.push(pl);
+						if(count>8) {
+						stop();
+					
+					}
+				}
+				}else
+				Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Duplicate Value',
+					html: 'You can\'t read the same value more than once.',
+				   icon:'warning'
+					}); 
+	
+			  }
+			  else 
+			  Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Power is OFF!!!',
+					html: 'Please start the experiment.',
+				   icon:'warning'
+					}); 
+			  
+			}
+			function stop() {
+				Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Done.',
+					html: 'You cannot read more values. Now click on <b style="color:#19318F">PLOT</b> button.',
+				   icon:'warning'
+					}); 
+					document.getElementById("stop").disabled="true";
+			}
+			function updateTextBox(val) {
+			if(f==1){
+				document.getElementById("x").value=val;
+				var rand=(Math.random() * (0.120 - 0.0200) + 0.0200).toFixed(3);
+				y=(10*Math.log10((45-(val*0.0812345)-rand).toFixed(3))).toFixed(3);
+			
+				var z=(10*Math.log10((45-(val*0.0812345)-rand).toFixed(3))).toFixed(2);
+				
+				document.getElementById("y").value=z+"dBm";
+				var canvas = document.getElementById('circle');
+				if (canvas.getContext) {
+					var ctx = canvas.getContext('2d');
+					var X = canvas.width /2;
+					var Y = canvas.height /2;
+					switch(parseInt(val)){
+						case 1:x=1;break;
+						case 2:x=3;break;
+						case 3:x=5;break;
+						case 4:x=7;break;
+						case 5:x=9;break;
+						case 6:x=11;break;
+						case 7:x=13;break;
+						case 8:x=15;break;
+					}
+					var R = val * 10 +x;
+					clearCircle(ctx,X,Y,100);
+					ctx.beginPath();
+					ctx.arc(X, Y, R, 0, 2 * Math.PI, false);
+					ctx.lineWidth = 1;
+					ctx.strokeStyle = '#FF0000';
+					ctx.stroke();
+					ctx.fillStyle="red";
+					ctx.fill();
+				}
+				}else {
+					Swal.fire({
+					backdrop:false,
+				   target: '#exp',
+				   position:'center',
+					customClass: {
+					  container: 'position-absolute',
+					  popup:"swal2-popup"
+					},
+					title:'Power is OFF.',
+					html: 'Please turn on to read values.',
+				   icon:'warning'
+					}); 
+				
+				
+				document.getElementById("stop").value=1;}
+			}
+			function clearCircle(context,x,y,radius) {
+				context.save();
+				context.beginPath();
+				context.arc(x, y, radius, 0, 2*Math.PI, true);
+				context.clip();
+				context.clearRect(x-radius,y-radius,radius*2,radius*2);
+				context.restore();
+			}
+		
+			
+		</script>
+			
+			<div id="cntrwrap">
+
+				<div id="cntrlr"><p style="text-align:center; color:white;display: contents;"><b>CONTROLS</b></p> 
+				</div>
+		<div style="position:absolute;top:2em;left:5px;">
+		<b>Power On/Off</b>&ensp;&ensp;&ensp;
+			<input type="checkbox" id="switch" class="checkbox" onchange="updateLaser()">
+			<label for="switch" class="toggle">
+			</label>
+		</div>
+		<table cellpadding="2"  style="position: absolute;left: 5px;top: 5em;">
+				<tbody><tr>
+					<th>Select circle(1-8)</th>
+					<td><input type="range" min="1" max="8" step="1" value="1" onchange="updateTextBox(this.value)" id="stop" style="width:110"></td>
+					<td><input style="width:2em" type="text" id="x" /></td>
+				</tr>
+				<tr><td style="position: absolute;top: 0.9em;right:28em;z-index: 11;">
+							<input type="text" id="y" style="
+									width: 75px;
+									height: 71px;
+									transform: rotate(2deg);
+									font-size:15px;
+									border-top-style:hidden;
+									border-right-style: hidden;
+									border-left-style: hidden;
+									border-bottom-style:hidden;
+									background-color:#D3D3D3;
+									color:black;
+								">
+					</td>
+				<tr>
+				
+			</tbody></table>
+          </div>
+
+		  <div class="but">
+			<div style="display:flex">
+			<button class="button" id="plot" onclick="plot()" disabled>PLOT</button>
+			<button class="button" onclick="window.location.reload()">RESET</button>
+			</div></br>
+			<div style="display:flex">
+				<button class="button" id="button1" onclick="printf()">PRINT</button><br/>
+			<button class="button" id="add" onclick="insert()">Add to table</button>
+			</div>
+			
+			</div>
+
+			<div class="calc">
+		
+			<table  cellpadding="5" border="2 solid black" id="table">
+				<tbody>
+				<tr style="background-color:#19318F;text-align:center;font-size:20px;color:white;height:25px;">
+					<td colspan="4">EXPERIMENTAL READINGS</td>
+				</tr>
+				<tr bgcolor="#ffffff" class="font">
+					<th>Sl.No</th>
+					<th>Circle<br>number</th>
+					<th>P<sub>o</sub><br>(dBm)</th>
+					<th align="center">dB<sub>Loss</sub></th>
+				</tr>
+			</tbody></table>
+				
+			</div>
+	
+			<div id="circuitsection">
+
+				<div id="crtsec"><p style="text-align:center; color:white;display: contents;"><b>SETUP</b></p> </div>	
+
+		<div id="circuit">			
+			
+				<div class="laser"><img src="images/laser.png" width="140em" height="70em"></div>
+				<div id="light" class="setup"></div>
+				<div id="light1" class="setup1"></div>
+				<div class="glass"><img src="images/glass.PNG" width="100em" height="200em"></div>
+				<div class="meter"><img src="images/meter.png" width="240em" height="100em"></div>
+	<div style="position:absolute;top: 14em;left: 2em;"><b>He-Ne Laser</b></div>
+	<div style="position:absolute;top: 14em;left: 25em;"><b>Glass slide</b></div>
+	<div style="position:absolute;top: 14em;right: 5em;"><b>Power meter</b></div>
+			
+		<figcaption id="figcap">Setup for Optical Power Measurements</figcaption>
+		
+				</div></div>
+	
+		<div class="graph">
+		
+				<table border="2 solid black" id="graph">
+					<tbody><tr style=" background-color:#19318F;color:white;height:25px;"><td align="center" style="font-size: 20px;font-weight: bold;">GRAPH</td></tr>
+					<tr><td bgcolor="#ffffff"><canvas id="canvas" width="685" height="200"></canvas></td></tr>
+				</tbody></table>
+		</div>
+	
+	</div>
+
+	<div class="setup_part">
+			<img id="screen1" src="images/circle.png" alt="screen" height="200" width="200">
+			<canvas class="ccircle" id="circle" width="200" height="200"></canvas>
+	</div>
+	
+	<div class="instruct">
+		<a id="myBtn" href="#">INSTRUCTIONS</a>
+			<div id="myModal" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="close">&times;</span>
+						<h2>Instructions</h2>
+					</div>
+					<div class="modal-body">
+						<br/>
+						<ol type="1" style="font-size:17px">
+							<li>Toggle On/Off button to control the power to the system.</li>
+							<li>Select the number of circles using the range slider.</li>
+							<li>After reading number of circles you can click <b style="color:#091069">'Add to table'</b> button to read values into table.</li>
+							<li>Click on <b style="color:#091069">'PLOT'</b> button to plot the graph.</li>
+						</ol>
+						<left style="font-size:20px;font-weight: bold;color:red">Formula:</left><br><br>
+						&nbsp;&nbsp;&nbsp;&nbsp;dB<sub>Loss</sub> = P<sub>i</sub> - P<sub>o</sub>
+						<br/><br/><label style="font-weight: bold;color:red">Note 1: </label>
+						<b>Do not move the range slider of Select circle without turning on the power.</b><br/>
+						<label style="font-weight: bold;color:red">Note 2: </label>
+						<b>Do not click "Add to table" button" without powering the system.</b><br/>
+						<label style="font-weight: bold;color:red">Note 3: </label>
+						<b>Do not click "PLOT" without turning the system. Also, do not click "PLOT" button without adding values into table.</b>
+					</div>
+					<div class="modal-footer">
+						<br/>
+					</div>
+			</div>
+</div></div>
+
+
+	<script>
+		var modal = document.getElementById("myModal");
+
+		// Get the button that opens the modal
+		var btn = document.getElementById("myBtn");
+
+		// Get the <span> element that closes the modal
+		var span = document.getElementsByClassName("close")[0];
+
+		// When the user clicks the button, open the modal 
+		btn.onclick = function() {
+			modal.style.display = "block";
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = function() {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+					modal.style.display = "none";
+			}
+		}
+		
+		function printf() {
+			if(t) document.getElementById("se-pre-con").remove();
+			t=0;
+			window.print();
+		}
+	
+
+	</script>
+	  <footer class="main-footer">
+		<div align="center" style="font-size: 16px;color:white;margin:auto">&copy; 2023 Virtual Labs, IIT Roorkee<!-- Institute Name --> </div>
+	  </footer>
+</body></html>
