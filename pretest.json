@@ -1,0 +1,5 @@
+[{"question":"A large-area photodiode is utilized in the receiver to eliminate any effects from differing fiber and faces. State True/False?","answers":{"a":"True","b":"False"},"correctAnswer":"a"},
+{"question":"Which of the following cannot be used in equipment for field measurements?","answers":{"a":"Environmental factor","b":"External triggering","c":"Fiber","d":"Connector"},"correctAnswer":"b"},
+{"question":"The handheld optical power meter has a measurement accuracy of ________.","answers":{"a":"0.35dB","b":"0.25dB","c":"0.26dB","d":"0.14dB"},"correctAnswer":"b"},
+{"question":"_____________ may be used for measurement of the absolute optical attenuation on a fiber link.","answers":{"a":"Gyrators","b":"Silicon photodiodes","c":"InGaAsP photodiodes","d":"Optical power meters"},"correctAnswer":"d"},
+{"question":"Optical time domain reflectometry is also called a backscatter measurement method. State True/False?","answers":{"a":"True","b":"False"},"correctAnswer":"a"}]
