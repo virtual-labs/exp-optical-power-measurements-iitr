@@ -15,7 +15,7 @@ The situation becomes more involved when light passes through a slab of material
 
 ![](images/figure.PNG)
 
-**Figure 1: **
+**Figure 1:Light Transmission and Reflection through a Slab with Two Parallel Interfaces**
 
 </center>
 
