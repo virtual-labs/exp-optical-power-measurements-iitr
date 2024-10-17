@@ -3,7 +3,7 @@
 
 It is well-known that when an optical beam is incident normally from a medium with refractive index n<sub>1</sub> onto another medium with refractive index n<sub>2</sub>, part of the beam is reflected and part of it is transmitted. Note that the incident beam encounters a single interface only. The reflectivity R<sub>1</sub> and transmissivity T<sub>1</sub> in this case are given by:
 
-<center><b>R<sub>1</sub>\=P<sub>r</sub>/P<sub>i</sub>\=(n<sub>1</sub>\-n<sub>2</sub>/n<sub>1</sub>+n<sub>2</sub>)2       ----(1)</b></center>
+<center><b>R<sub>1</sub>=P<sub>r</sub>/P<sub>i</sub>=(n<sub>1</sub>-n<sub>2</sub>/n<sub>1</sub>+n<sub>2</sub>)2       ----(1)</b></center>
 
 <center><b>T<sub>1</sub>\=P<sub>t</sub>/P<sub>i</sub>\=1-R<sub>1</sub>\=4n<sub>1</sub>n<sub>2</sub>/(n<sub>1</sub>+n<sub>2</sub>)2       ----(2)</b></center>
 
