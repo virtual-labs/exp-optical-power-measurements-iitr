@@ -5,7 +5,7 @@ It is well-known that when an optical beam is incident normally from a medium wi
 
 <center><b>R<sub>1</sub>=P<sub>r</sub>/P<sub>i</sub>=(n<sub>1</sub>-n<sub>2</sub>/n<sub>1</sub>+n<sub>2</sub>)2       ----(1)</b></center>
 
-<center><b>T<sub>1</sub>\=P<sub>t</sub>/P<sub>i</sub>\=1-R<sub>1</sub>\=4n<sub>1</sub>n<sub>2</sub>/(n<sub>1</sub>+n<sub>2</sub>)2       ----(2)</b></center>
+<center><b>T<sub>1</sub>=P<sub>t</sub>/P<sub>i</sub>=1-R<sub>1</sub>=4n<sub>1</sub>n<sub>2</sub>/(n<sub>1</sub>+n<sub>2</sub>)2       ----(2)</b></center>
 
 Where P<sub>i</sub>, P<sub>r</sub> and P<sub>t</sub> denote the incident, reflected and transmitted powers, respectively. The subscripts in R<sub>1</sub> and T<sub>1</sub> denote reflection and transmission through a single interface.
 
@@ -22,7 +22,7 @@ The situation becomes more involved when light passes through a slab of material
 
 According to theory, the transmissivity T<sub>2</sub> of the slab shown in Figure above is given by:
 
-<center><b>T<sub>2</sub>\=P<sub>t</sub>/P<sub>i</sub>\=(1-R)<sup>2</sup>/(1-R)<sup>2</sup>+4R<sub>1</sub>sin<sup>2</sup>δ       ----(3)</b></center>
+<center><b>T<sub>2</sub>=P<sub>t</sub>/P<sub>i</sub>=(1-R)<sup>2</sup>/(1-R)<sup>2</sup>+4R<sub>1</sub>sin<sup>2</sup>δ       ----(3)</b></center>
 
 Where R<sub>1</sub> is the reflectivity of a single interface, which is given by equation (1), δ= k<sub>o</sub>n<sub>2</sub>d = (2π/λ)n<sub>2</sub>d and λ is the free space wavelength. The subscript in T<sub>2</sub> indicates the presence of two parallel interfaces.
 
@@ -36,7 +36,7 @@ Let us assume that the slab is made of glass (n<sub>2</sub> =1.50 ) and the surr
 
 Using equation (5), we can calculate the range of the power loss in dB that an optical beam encounters when passing through a slab of glass:
 
-<center><b>\-10log(0.852) >= dB<sub>Loss</sub> >= -10log(1.0)  </b></center>
+<center><b>-10log(0.852) >= dB<sub>Loss</sub> >= -10log(1.0)  </b></center>
 <center><b>0.696 dB >= dB<sub>Loss</sub> >= 0dB       ----(6)  </b></center>
 
 In this experiment, the power loss due to a glass slab in the form of a microscope slide will be measured in dB. Because the thickness _d_ of the microscope slide is _not uniform_ across the slide, the parameter δ changes value depending on the location where the light beam passes through the slide. This means that the power loss caused by the glass slide is also not uniform. However, according to theory this loss must always lie in the range given by equation (6). Also according to equation (6), the _mean_ loss of the glass slide equals (0+0.696) / 2 = 0.348 dB.
